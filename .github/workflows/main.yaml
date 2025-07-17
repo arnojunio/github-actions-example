@@ -8,5 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello World
-        run: echo "Hello, World!"
+      - name: Get latest commit
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: touch .env && echo "${{secrets.TEST_ENV}}" >> .env
+
+      - name: Print .env file
+        run: cat .env
